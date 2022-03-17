@@ -11,7 +11,7 @@ struct conferance
 };
 
 
-void printStrcut(conferance list[], int structSize)
+void printStrcut(conferance *list, int structSize)
 {
     for (int i = 0; i < structSize; i++)
     {
@@ -22,7 +22,7 @@ void printStrcut(conferance list[], int structSize)
     }
 }
 
-void printStrcutInSearch(conferance list[], int structSize)
+void printStrcutInSearch(conferance *list, int structSize)
 {
     for (int i = structSize; i <= structSize; i++)
     {
@@ -33,7 +33,7 @@ void printStrcutInSearch(conferance list[], int structSize)
     }
 }
 
-void sort(conferance list[], int arraySize)
+void sort(conferance *list, int arraySize)
 {
 
     for (int i = 0; i < arraySize; i++)
@@ -50,24 +50,43 @@ void sort(conferance list[], int arraySize)
     
 }
 
-void search(conferance list[], int arraySize, string target)
+void search(conferance *list, int arraySize, string target)
 {
     for (int i = 0; i < arraySize; i++)
         if (list[i].where == target || list[i].secondName == target || list[i].number == target)
             printStrcutInSearch(list, i);
 }
 
+void enterStrcut(conferance *list, int structSize)
+{
+    for (int i = 0; i < structSize; i++)
+    {
+        string tmpName;
+        string tmpWhere;
+        string tmpNumber;
+        
+        cout << "Second name : ";
+        cin >> tmpName;
+        list[i].secondName = tmpName;
+        
+        cout << "Where : ";
+        cin >> tmpWhere;
+        list[i].where = tmpWhere;
+        
+        cout << "Number : ";
+        cin >> tmpNumber;
+        list[i].number = tmpNumber;
+        
+        cout << endl;
+    }
+}
+
 
 int main()
 {
+    int size = 2;
 
-    conferance members[] = {
-        {"Nekrasov", "Russia", "+123"},
-        {"Grozni", "Russia", "+087"},
-        {"Novikov", "Switzerland", "+456"}
-    };
-
-    int size = sizeof(members) / sizeof(members[0]);
+    conferance *members = new conferance[size];
 
     string target;
 
@@ -75,7 +94,9 @@ int main()
     getline(cin, target);
     cout << endl;
 
+    enterStrcut(members, size);
     sort(members, size);
+    system("cls");
 
     cout << endl << "Structure" << endl;
     printStrcut(members, size);

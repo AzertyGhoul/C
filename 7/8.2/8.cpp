@@ -63,21 +63,45 @@ void sort(gym list[], int arraySize)
     
 }
 
+void enterStrcut(gym *list, int structSize)
+{
+    for (int i = 0; i < structSize; i++)
+    {
+        string tmpCustomer;
+        int tmpHowMuch;
+        string tmpCustomerTrainer;
+        
+        cout << "Customer : ";
+        cin >> tmpCustomer;
+        list[i].customer = tmpCustomer;
+        
+        cout << "How Much : ";
+        cin >> tmpHowMuch;
+        list[i].howMuch = tmpHowMuch;
+        
+        cout << "Customer Trainer : ";
+        cin >> tmpCustomerTrainer;
+        list[i].customerTrainer = tmpCustomerTrainer;
+        
+        cout << endl;
+    }
+}
+
 int main()
 {
+    int size = 2;
 
-    gym members[] = {
-        {"Nekrasov", 2, "Jason"},
-        {"Grozni", 8, "Mike"},
-        {"Novikov", 4, "Ars"}
-    };
-
-    int size = sizeof(members) / sizeof(members[0]);
+    gym *members = new gym[size];
+    enterStrcut(members, size);
+    system("cls");
 
     int target;
     int targetNumber;
 
     string newValue;
+
+    cout << endl << "Structure" << endl;
+    printStrcut(members, size);
 
     cout << "Enter member number : ";
     cin >> targetNumber;
@@ -90,9 +114,6 @@ int main()
     cin.ignore();
     cout << "Enter new value : ";
     getline(cin, newValue);
-
-    cout << endl << "Structure" << endl;
-    printStrcut(members, size);
 
     edit(members, size, target, targetNumber, newValue);
     sort(members, size);

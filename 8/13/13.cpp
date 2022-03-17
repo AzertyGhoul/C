@@ -11,8 +11,8 @@ int main()
     char letter;
     string textInFile;
     string word;
-    int tmpFirst = -99999;
-    int tmpLast = 99999;
+    char tmpFirst;
+    char tmpLast;
     int count = 0;
 
     
@@ -20,11 +20,8 @@ int main()
     getline(file, textInFile);
     file.close();
 
-    textInFile += ' ';
+    textInFile.insert(textInFile.length(), " ");
     textInFile.insert(0, " ");
-
-    cout << "Enter letter : ";
-    cin >> letter;
 
     fileAfterEdit.open("fileAfterEdit.txt", ios::out);
      
@@ -37,26 +34,26 @@ int main()
         else
             word += textInFile[i];
 
-        if (textInFile[i] == letter && textInFile[i - 1] == ' ')
-            tmpFirst = 1;
+        if (textInFile[i - 1] == ' ' && textInFile[i] != ' ')
+            tmpFirst = textInFile[i];
         
-        if (textInFile[i + 1] == ' ' && textInFile[i] == letter)
-            tmpLast = 1;
+        if (textInFile[i + 1] == ' ' && textInFile[i] != ' ')
+            tmpLast = textInFile[i];
             
         if (tmpFirst == tmpLast)
         {
             fileAfterEdit << word + " ";
             count += 1;
-            tmpFirst = 9999;
-            tmpLast = -9999;
+            tmpFirst = '1';
+            tmpLast = '0';
         }
         else
         {
-            tmpLast = -99999;
+            tmpLast = '0';
         }
 
-        if (textInFile[i] == ' ' && tmpLast == -99999)
-            tmpFirst = 9999;
+        if (textInFile[i] == ' ' && tmpLast == '0')
+            tmpFirst = NULL;
         
     }   
     cout << count;

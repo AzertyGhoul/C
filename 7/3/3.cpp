@@ -11,7 +11,7 @@ struct school
     int PE;
 };
 
-void printStrcut(school list[], int structSize)
+void printStrcut(school *list, int structSize)
 {
     for (int i = 0; i < structSize; i++)
     {
@@ -23,26 +23,53 @@ void printStrcut(school list[], int structSize)
     }
 }
 
+void enterStrcut(school *list, int structSize)
+{
+    for (int i = 0; i < structSize; i++)
+    {
+        string tmpName;
+        int tmpMath;
+        int tmpChemistry;
+        int tmpPE;
+        
+        cout << "Second name : ";
+        cin >> tmpName;
+        list[i].secondName = tmpName;
+        
+        cout << "Math : ";
+        cin >> tmpMath;
+        list[i].math = tmpMath;
+        
+        cout << "Chemistry : ";
+        cin >> tmpChemistry;
+        list[i].chemistry = tmpChemistry;
+        
+        cout << "PE : ";
+        cin >> tmpPE;
+        list[i].PE = tmpPE;
+        
+        cout << endl;
+    }
+}
+
 int main()
 {
+    int size = 2;
+    
+    school *students = new school[size];
 
-    school students[] = {
-        {"Alex", 3, 4, 5},
-        {"Mark", 2, 3, 3},
-        {"Mars", 4, 3, 4}
-    };
-
-    int size = sizeof(students) / sizeof(students[0]);
     int sum = 0;
 
     string target;
-
     cout << endl << "Subject ";
-    getline(cin, target);
+        getline(cin, target);
+    
+    enterStrcut(students, size);
+    system("cls");
 
     for (int i = 0; i < size; i++)
     {
-        if (target == "chemistry")
+        if (target == "Chemistry")
             sum += students[i].chemistry;
         
         if (target == "PE")

@@ -57,14 +57,16 @@ int main()
    cout << endl << "MaxRow" << endl;
     for (int i = 0; i < columns; i++)
     {
+        sumForMax += array[maxRow * columns + i];
         cout << setw(3) << array[maxRow * columns + i];
     }
 
     cout << endl << "\nMinRow" << endl;
     for (int i = 0; i < columns; i++)
     {
+        sumForMin += array[minRow * columns + i];
         cout << setw(3) << array[minRow * columns + i];
     }
     
-    
+    cout << endl << "\nSum of max row : " << sumForMax << endl << "Sum of min row : "<< sumForMin;
 }
